@@ -52,6 +52,8 @@ class Schema extends WP_CLI_Command {
         WP_CLI::error("No schema upgrade hooks found");
         return;
     }
+    WP_CLI::log(sprintf("Executing schema upgrade"));
+    WP_CLI::log(sprintf("│ "));
 
     // Wrap all the hooks in a function that logs execution time
     foreach($wp_filter['schema_upgrade'] as $priority => &$sub_hooks) {
@@ -67,26 +69,32 @@ class Schema extends WP_CLI_Command {
         $info = $this->get_reflection_info($reflection);
         
         $_this = $this;
-        $hook['function'] = function() use ($_this, $info, $function) {
+        $hook['function'] = function() use ($_this, $info, $function, $sub_hooks) {
           $before = microtime(true);
-          WP_CLI::log(sprintf("Executing %s", $info['filename']));
-          WP_CLI::log(sprintf("├── Function name: %s", $info['name']));
+          $pipe = $hook === $sub_hooks[0] ? "├─┬" : "├──";
+          WP_CLI::log(sprintf("{$pipe} Executing %s", $info['filename']));
+          WP_CLI::log(sprintf("│ ├── Function name: %s", $info['name']));
           
           $result = call_user_func_array($function, func_get_args());
           
           if($result != false) {
-            WP_CLI::log(sprintf("├── Skipping, result returned false"));
+            WP_CLI::log(sprintf("│ └── Skipping, result returned false"));
           } else {
             $after = microtime(true);
             $diff = number_format($after - $before, 5);
-            WP_CLI::log(sprintf("├── Completed in %Fs", $diff));
+            $pipe = $hook === end($sub_hooks) ? "└──" : "│ ├──";
+            WP_CLI::log(sprintf("│ └── Completed in %Fs", $diff));
           }
+          
+          WP_CLI::log(sprintf("│ "));
         };
       }
     }
     
     // Run all associated now that debug information has been added
     do_action('schema_upgrade');
+    
+    WP_CLI::log(sprintf("└── Schema upgrade complete"));
   }
 }
 
