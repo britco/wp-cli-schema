@@ -77,7 +77,7 @@ class Schema extends WP_CLI_Command {
           
           $result = call_user_func_array($function, func_get_args());
           
-          if($result != false) {
+          if($result === false) {
             WP_CLI::log(sprintf("│ └── Skipping, result returned false"));
           } else {
             $after = microtime(true);
