@@ -1,0 +1,16 @@
+{
+    "name": "britco/wp-cli-schema",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Paul Dufour",
+            "email": "paul@brit.co"
+        }
+    ],
+    "extra": {
+        "installer-name": "wp-cli-schema"
+    },
+    "require": {
+       "composer/installers" : "~1.0"
+    }
+}
