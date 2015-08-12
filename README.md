@@ -10,7 +10,9 @@ executed in the CLI context and not the browser.
 ## Usage
 
 In your plugin, add a hook for the `schema_upgrade` action. It should behave
-similar to https://codex.wordpress.org/Creating_Tables_with_Plugins. It should
+similar to https://codex.wordpress.org/Creating_Tables_with_Plugins. You should
+write it in a way where it can repeatedly run without harm. For example, if one
+of your plugins needs to create a new term:
 
 ````
 add_action('schema_upgrade', function() {
