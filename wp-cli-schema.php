@@ -73,12 +73,10 @@ class Schema extends WP_CLI_Command {
           
           if($result != false) {
             WP_CLI::log(sprintf("├── Skipping, result returned false"));
-            $_this->log_step('skip', $reflection);
           } else {
             $after = microtime(true);
             $diff = number_format($after - $before, 5);
             WP_CLI::log(sprintf("├── Completed in %Fs", $diff));
-            $_this->log_step('success', $reflection);
           }
         };
       }
