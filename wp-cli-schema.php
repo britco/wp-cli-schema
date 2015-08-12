@@ -8,7 +8,7 @@ Plugin Name: WP-CLI Schema
 Plugin URI:
 Description: Adds 'schema' commands to wp-cli
 Author: Paul Dufour
-Version: 0.1
+Version:
 Author URI: http://www.brit.co
 */
 
