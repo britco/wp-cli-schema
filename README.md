@@ -1,5 +1,7 @@
 ## wp-cli-schema
 
+[![Circle CI](https://circleci.com/gh/britco/wp-cli-schema/tree/master.svg?style=svg)](https://circleci.com/gh/britco/wp-cli-schema/tree/master)
+
 Adds extra commands to [wp-cli](http://wp-cli.org/) to do schema upgrades for
 Wordpress. It allows you to do DB upgrades on deploy, instead of having to do
 hacks like re-activating your plugin so it fires activation hooks again.
