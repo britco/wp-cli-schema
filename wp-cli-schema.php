@@ -84,7 +84,7 @@ class Schema extends WP_CLI_Command {
       }
     }
     
-    // Run all associated hooks
+    // Run all associated now that debug information has been added
     do_action('schema_upgrade');
   }
 }
