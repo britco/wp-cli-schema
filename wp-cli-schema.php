@@ -16,7 +16,6 @@ if (!defined('WP_CLI') || !WP_CLI) {
   return;
 }
 
-
 class Schema extends WP_CLI_Command {
   /**
    * Extract relevant data from a reflection method / function
