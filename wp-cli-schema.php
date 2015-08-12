@@ -41,6 +41,11 @@ class Schema extends WP_CLI_Command {
     );
   }
   
+  /**
+   * Upgrade function. Runs all functions attatched to the "schema_upgrade" hook.
+   * @param  array $args       [description]
+   * @param  array  $assoc_args [description]
+   */
   public function upgrade($args, $assoc_args=array()) {
     global $wp_filter;
     
@@ -48,7 +53,6 @@ class Schema extends WP_CLI_Command {
         WP_CLI::error("No schema upgrade hooks found");
         return;
     }
-
 
     // Wrap all the hooks in a function that logs execution time
     foreach($wp_filter['schema_upgrade'] as $priority => &$sub_hooks) {
