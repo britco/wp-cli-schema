@@ -52,7 +52,7 @@ class Schema extends WP_CLI_Command {
         WP_CLI::error("No schema upgrade hooks found");
         return;
     }
-    WP_CLI::log(sprintf("Executing schema upgrade"));
+    WP_CLI::log(sprintf("Schema upgrade starting"));
     WP_CLI::log(sprintf("│ "));
 
     // Wrap all the hooks in a function that logs execution time
@@ -94,7 +94,7 @@ class Schema extends WP_CLI_Command {
     // Run all associated now that debug information has been added
     do_action('schema_upgrade');
     
-    WP_CLI::log(sprintf("└── Schema upgrade complete"));
+    WP_CLI::log(sprintf("└── Schema upgrade completed"));
   }
 }
 
