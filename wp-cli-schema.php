@@ -19,6 +19,7 @@ if (!defined('WP_CLI') || !WP_CLI) {
 class Schema extends WP_CLI_Command {
   /**
    * Extract relevant data from a reflection method / function
+   * @param mixed ReflectionMethod or ReflectionFunction
    * @return array Data about the refleciton
    */
   protected function get_reflection_info($reflection) {
@@ -42,8 +43,6 @@ class Schema extends WP_CLI_Command {
   
   /**
    * Upgrade function. Runs all functions attatched to the "schema_upgrade" hook.
-   * @param  array $args       [description]
-   * @param  array  $assoc_args [description]
    */
   public function upgrade($args, $assoc_args=array()) {
     global $wp_filter;
